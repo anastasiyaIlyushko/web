@@ -17,6 +17,8 @@ func TestNormalizeArrayIfNeeded(t *testing.T) {
 		{nil, `null`},
 		{"hello", `"hello"`},
 		{map[string]interface{}{"hello": "hi!"}, `{"hello":"hi!"}`},
+		{map[string][]string{"hello": {"world", "!"}}, `{"hello":["world","!"]}`},
+		{map[string][]string{"hello": {}}, `{"hello":[]}`},
 	}
 
 	for _, oneCase := range cases {
