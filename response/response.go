@@ -9,9 +9,16 @@ import (
 	"gopkg.in/webnice/web.v1/mime"
 )
 
-// return empty array if v is a nil slice
+func indirect(rv reflect.Value) reflect.Value {
+	for rv.Kind() == reflect.Ptr {
+		rv = rv.Elem()
+	}
+	return rv
+}
+
+// Function returns empty array if v is a nil slice
 func normalizeArrayIfNeeded(v interface{}) interface{} {
-	val := reflect.ValueOf(v)
+	var val = indirect(reflect.ValueOf(v))
 	if (val.Kind() == reflect.Array || val.Kind() == reflect.Slice) && val.Len() == 0 {
 		return make([]int, 0)
 	}
