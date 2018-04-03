@@ -25,8 +25,8 @@ func normalizeArrayIfNeeded(v interface{}) interface{} {
 	return v
 }
 
-// Json Encoding an object to json format and printing the result with header and status code
-func Json(wr http.ResponseWriter, st int, val interface{}) (err error) {
+// JSON Encoding an object to json format and printing the result with header and status code
+func JSON(wr http.ResponseWriter, st int, val interface{}) (err error) {
 	wr.Header().Add(header.ContentType, mime.ApplicationJSONCharsetUTF8)
 	wr.WriteHeader(st)
 	err = json.NewEncoder(wr).Encode(val)
