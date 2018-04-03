@@ -1,12 +1,27 @@
 package response
 
-import "reflect"
+import (
+	"encoding/json"
+	"net/http"
+	"reflect"
 
-// NormalizeArrayIfNeeded return empty array if v is a nil slice
-func NormalizeArrayIfNeeded(v interface{}) interface{} {
+	"gopkg.in/webnice/web.v1/header"
+	"gopkg.in/webnice/web.v1/mime"
+)
+
+// return empty array if v is a nil slice
+func normalizeArrayIfNeeded(v interface{}) interface{} {
 	val := reflect.ValueOf(v)
 	if (val.Kind() == reflect.Array || val.Kind() == reflect.Slice) && val.Len() == 0 {
 		return make([]int, 0)
 	}
 	return v
+}
+
+// Json Encoding an object to json format and printing the result with header and status code
+func Json(wr http.ResponseWriter, st int, val interface{}) (err error) {
+	wr.Header().Add(header.ContentType, mime.ApplicationJSONCharsetUTF8)
+	wr.WriteHeader(st)
+	err = json.NewEncoder(wr).Encode(val)
+	return
 }

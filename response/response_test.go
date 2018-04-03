@@ -22,7 +22,7 @@ func TestNormalizeArrayIfNeeded(t *testing.T) {
 	}
 
 	for _, oneCase := range cases {
-		nVal := NormalizeArrayIfNeeded(oneCase.a)
+		nVal := normalizeArrayIfNeeded(oneCase.a)
 		res, _ := json.Marshal(nVal)
 		if string(res) != oneCase.b {
 			t.Errorf("a: %#v; expected: %#v; got: %#v", oneCase.a, oneCase.b, string(res))
