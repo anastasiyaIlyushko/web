@@ -9,6 +9,7 @@ gopkg.in/webnice/web.v1/header
 gopkg.in/webnice/web.v1/method
 gopkg.in/webnice/web.v1/mime
 gopkg.in/webnice/web.v1/param
+gopkg.in/webnice/web.v1/response
 gopkg.in/webnice/web.v1/route
 gopkg.in/webnice/web.v1/status
 gopkg.in/webnice/web.v1/middleware/wrapsrw
